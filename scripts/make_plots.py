@@ -159,12 +159,16 @@ for runs in runs_to_plot:
             ax1.set_ylabel('Network Alignment Factor')
 
         elif yvariable == 'angle_err':
-            ax1.set_ylim(0.0, None)
+            ax1.set_ylim(1e-1, 1e3)
+            ax1.set_yscale('log')
             ax1.set_ylabel('Expected Error Region (squared degrees)')
 
+            # Include a line where the expected and observed error region equal
+            x_values = np.linspace(1e-5, max(err_reg))
+            ax1.plot(x_values, x_values)
 
         ax1.set_xlabel('Error Region (squared degrees)')
-        ax1.set_xlim(1e-1, 1e5)
+        ax1.set_xlim(1e-1, 1e4)
         ax1.set_xscale('log')
 
     # Histogram of Error Regions
